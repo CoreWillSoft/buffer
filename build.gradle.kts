@@ -213,3 +213,6 @@ ktlint {
     verbose.set(true)
     outputToConsole.set(true)
 }
+task("testClasses").doLast {
+    println("This is a dummy testClasses task")
+}
