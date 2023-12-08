@@ -38,24 +38,12 @@ kotlin {
             useJUnit()
         }
     }
-    js(IR) {
-        moduleName = "buffer-kt"
-        browser { binaries.library() }
-        nodejs { binaries.library() }
-    }
-
-    macosX64()
-    macosArm64()
-    linuxX64()
     ios()
     iosSimulatorArm64()
     tasks.getByName<KotlinNativeSimulatorTest>("iosSimulatorArm64Test") {
         device.set("iPhone 14")
     }
-    watchos()
-    watchosSimulatorArm64()
-    tvos()
-    tvosSimulatorArm64()
+
 
     sourceSets {
         val commonMain by getting
@@ -70,64 +58,28 @@ kotlin {
         val jvmTest by getting {
             kotlin.srcDir("src/commonJvmTest/kotlin")
         }
-
-        val jsMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-web:1.0.0-pre.615")
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-js:1.0.0-pre.615")
-            }
-        }
-        val jsTest by getting
-        val macosX64Main by getting
-        val macosX64Test by getting
-        val macosArm64Main by getting
-        val macosArm64Test by getting
-        val linuxX64Main by getting
-        val linuxX64Test by getting
         val iosMain by getting
         val iosTest by getting
         val iosSimulatorArm64Main by getting
         val iosSimulatorArm64Test by getting
-        val watchosMain by getting
-        val watchosTest by getting
-        val watchosSimulatorArm64Main by getting
-        val watchosSimulatorArm64Test by getting
-        val tvosMain by getting
-        val tvosTest by getting
-        val tvosSimulatorArm64Main by getting
-        val tvosSimulatorArm64Test by getting
 
         val nativeMain by sourceSets.creating {
             dependsOn(commonMain)
-            linuxX64Main.dependsOn(this)
         }
         val nativeTest by sourceSets.creating {
             dependsOn(commonTest)
-            linuxX64Test.dependsOn(this)
         }
 
         val appleMain by sourceSets.creating {
             dependsOn(commonMain)
-            macosX64Main.dependsOn(this)
-            macosArm64Main.dependsOn(this)
             iosMain.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-            watchosMain.dependsOn(this)
-            watchosSimulatorArm64Main.dependsOn(this)
-            tvosMain.dependsOn(this)
-            tvosSimulatorArm64Main.dependsOn(this)
         }
 
         val appleTest by sourceSets.creating {
             dependsOn(commonTest)
-            macosX64Test.dependsOn(this)
-            macosArm64Test.dependsOn(this)
             iosTest.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
-            watchosTest.dependsOn(this)
-            watchosSimulatorArm64Test.dependsOn(this)
-            tvosTest.dependsOn(this)
-            tvosSimulatorArm64Test.dependsOn(this)
         }
 
         val androidMain by getting {
