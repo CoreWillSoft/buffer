@@ -29,6 +29,11 @@ repositories {
 kotlin {
     androidTarget {
         publishLibraryVariants("release")
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
     }
     jvm {
         compilations.all {
