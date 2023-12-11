@@ -118,7 +118,7 @@ android {
         targetSdk = 34
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    namespace = "$group.${rootProject.name}"
+    namespace = "com.ditchoom.buffer"
 }
 
 val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
